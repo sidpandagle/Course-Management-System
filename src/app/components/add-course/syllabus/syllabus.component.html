@@ -1,0 +1,21 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div *ngIf="!isLoading">
+    <h2>Syllabus</h2>
+    <hr />
+    <div *ngFor="let data of sections; let i = index" appearance="outline">
+        <div *ngIf="!sectionAdded">
+            <mat-label>Enter Section Title: </mat-label>
+            <input matInput #title type="text" name="title" placeholder="Enter Section Title" ngModel />
+            <button mat-button type="button" (click)="addSection(title.value)">
+        +
+      </button>
+        </div>
+        <div *ngIf="sectionAdded">{{ masterData.sectiontitle }}</div>
+        <!-- <app-topic *ngIf="sectionAdded"></app-topic> -->
+        <app-topic></app-topic>
+        <br /><br />
+    </div>
+    <button mat-button type="button" (click)="addSectionInput()">
+    Add Section
+  </button>
+</div>

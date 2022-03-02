@@ -1,0 +1,136 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div *ngIf="!isLoading">
+  <h2>Register Form</h2>
+  <hr />
+  <form #register="ngForm" (ngSubmit)="onSubmit()">
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        placeholder="Username"
+        [(ngModel)]="user.username"
+      />
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter your Username</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        name="username"
+        placeholder="Username"
+        [(ngModel)]="user.username"
+      />
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label" for="inputEmail">Email</label>
+      <input
+        #email="ngModel"
+        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+        type="email"
+        class="form-control"
+        [class]="
+          formSubmitted && email.invalid ? 'error-input' : 'form-control'
+        "
+        id="inputEmail"
+        placeholder="Email"
+        required
+        name="email"
+        [(ngModel)]="user.email"
+      />
+      <p class="error-message" *ngIf="email.invalid && formSubmitted">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+
+        <span style="color: red">Enter Valid Email</span>
+      </p>
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter your email</mat-label>
+      <input
+        matInput
+        #email="ngModel"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        type="email"
+        class="form-control"
+        placeholder="Your email"
+        required
+        name="email"
+        [(ngModel)]="user.email"
+      />
+      <mat-error *ngIf="email.invalid && formSubmitted">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label" for="inputPassword">Password</label>
+      <input
+        #password="ngModel"
+        type="password"
+        class="form-control"
+        [class]="
+          formSubmitted && password.invalid ? 'error-input' : 'form-control'
+        "
+        id="inputPassword"
+        minlength="8"
+        placeholder="Password"
+        required
+        name="password"
+        [(ngModel)]="user.password"
+        appPasswordShowHide
+      />
+      <p class="error-message" *ngIf="password.invalid && formSubmitted">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+
+        <span style="color: red">Enter Valid Password</span>
+      </p>
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        #password="ngModel"
+        type="password"
+        minlength="8"
+        class="form-control"
+        placeholder="Your Password"
+        required
+        name="password"
+        [(ngModel)]="user.password"
+      />
+      <mat-error *ngIf="password.invalid && formSubmitted">
+        Please enter a valid password
+      </mat-error>
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label>Country Code</label><br />
+      <select name="countrycode" [(ngModel)]="user.countrycode">
+        <option value="" selected="selected">Select Country</option>
+        <option *ngFor="let data of countrycodes" [value]="data.code">
+          {{ data.countryname }}
+        </option>
+      </select>
+    </div> -->
+    <!-- <div class="mb-3 form-group">
+      <input
+        type="checkbox"
+        [(ngModel)]="user.isinstructor"
+        name="isinstructor"
+      />&nbsp;
+      <label class="form-label">Is Instructor</label>
+    </div> -->
+    <mat-checkbox
+      type="checkbox"
+      [(ngModel)]="user.isinstructor"
+      name="isinstructor"
+      >Check me!</mat-checkbox
+    >
+    <div>
+      <label>Already have an account? <a routerLink="/login">SignIn</a></label>
+    </div>
+    <button mat-button class="animated-button youace-four" type="submit">
+      Sign Up
+    </button>
+  </form>
+</div>

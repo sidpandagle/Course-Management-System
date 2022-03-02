@@ -1,0 +1,19 @@
+<a mat-button (click)="fileInput.click()">
+  <mat-icon *ngIf="isLoading"
+    ><mat-spinner diameter="20"> </mat-spinner></mat-icon
+  ><span *ngIf="!isLoading">Choose Files</span>
+</a>
+<input
+  hidden
+  (change)="onFileSelected($event)"
+  #fileInput
+  type="file"
+  name="image"
+  multiple
+/>
+<div *ngFor="let data of preview; let i = index">
+  <!-- <img [src]="data" width="100" /> -->
+  <span>{{ selectedFile[i].name }}</span>
+</div>
+<a *ngIf="filesSelected" mat-button (click)="uploadFiles()">Upload Files</a>
+<br /><br />

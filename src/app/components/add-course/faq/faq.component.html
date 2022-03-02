@@ -1,0 +1,112 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div *ngIf="!isLoading">
+  <h4>FAQs List</h4>
+  <div *ngIf="faqNewArray.faqs.length; else message">
+    <div *ngFor="let data of faqNewArray.faqs; let i = index">
+      <br />
+      <div>
+        <p>
+          Question {{ i + 1 }}: {{ data.question }} <br />
+          Answer {{ i + 1 }}: {{ data.answer }}
+        </p>
+        <!-- <button
+          *ngIf="formSubmitted"
+          class="btn btn-primary btn-sm"
+          (click)="deleteCompletely(i)"
+        >
+          x
+        </button> -->
+        <button
+          mat-button
+          *ngIf="formSubmitted"
+          class="btn btn-primary btn-sm"
+          (click)="deleteCompletely(i)"
+          class="animated-button youace-four"
+        >
+          x
+        </button>
+        <!-- <button
+          *ngIf="!formSubmitted"
+          class="btn btn-primary btn-sm"
+          (click)="deletePartially(i)"
+        >
+          x
+        </button> -->
+        <button
+          mat-button
+          *ngIf="!formSubmitted"
+          class="btn btn-primary btn-sm"
+          (click)="deletePartially(i)"
+          class="animated-button youace-four"
+        >
+          x
+        </button>
+        &nbsp;
+      </div>
+    </div>
+  </div>
+  <ng-template #message> No FAQs to show. </ng-template>
+  <hr />
+  <h4>Add Faq</h4>
+  <form #faq="ngForm" (ngSubmit)="onSubmit()">
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Question</label>
+      <input
+        #question="ngModel"
+        type="text"
+        name="question"
+        class="form-control"
+        placeholder="-Enter Question-"
+        ngModel
+      />
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter Question</mat-label>
+      <input
+        matInput
+        #question="ngModel"
+        type="text"
+        name="question"
+        class="form-control"
+        placeholder="-Enter Question-"
+        ngModel
+      />
+      <mat-error *ngIf="question.invalid && formSubmitted">
+        Please enter a valid Question
+      </mat-error>
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Answer</label>
+      <input
+        #answer="ngModel"
+        name="answer"
+        class="form-control"
+        placeholder="-Enter Answer-"
+        ngModel
+      />
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter Answer</mat-label>
+      <input
+        matInput
+        #answer="ngModel"
+        name="answer"
+        class="form-control"
+        placeholder="-Enter Answer-"
+        ngModel
+      />
+      <mat-error *ngIf="answer.invalid && formSubmitted">
+        Please enter a valid answer
+      </mat-error>
+    </mat-form-field>
+    <button
+      mat-button
+      type="button"
+      class="btn btn-primary"
+      (click)="addFaq(faq.form)"
+    >
+      +</button
+    ><br /><br />
+    <button mat-button type="submit">Save FAQs</button>
+  </form>
+</div>

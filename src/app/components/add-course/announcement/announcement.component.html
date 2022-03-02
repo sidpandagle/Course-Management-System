@@ -1,0 +1,45 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div *ngIf="!isLoading">
+  <h2>Create Announcement</h2>
+  <hr />
+  <h3>List of Announcements</h3>
+  <h5 *ngIf="msg.title">TItleName: {{ msg.title }}</h5>
+  <ul>
+    <li
+      *ngFor="let data of announcementArray; let i = index"
+      [innerHTML]="data"
+    ></li>
+  </ul>
+  <div *ngIf="!announcementArray.length">No data to show</div>
+  <hr />
+  <form #announcement="ngForm" (ngSubmit)="onSubmit(announcement.form.value)">
+    <div class="mb-3 form-group">
+      <label class="form-label">Announcement for Students</label>
+      <editor
+        #message="ngModel"
+        name="announcement"
+        class="form-control"
+        placeholder="-Enter Message for Students-"
+        ngModel
+        apiKey="cbpoojpbjujvv7syuwg1lltc6v6al7iiyi174optst6j4ddi"
+        initialValue="<p>Initial content of the editor</p>"
+        [init]="{
+          height: 500,
+          menubar: false,
+          plugins: [
+            'advlist autolink lists link image charmap print',
+            'preview anchor searchreplace visualblocks code',
+            'fullscreen insertdatetime media table paste',
+            'help wordcount'
+          ],
+          toolbar:
+            'undo redo | formatselect | bold italic | \
+      alignleft aligncenter alignright alignjustify | \
+      bullist numlist outdent indent | help'
+        }"
+      >
+      </editor>
+    </div>
+    <button mat-button type="submit">Create Announcement</button>
+  </form>
+</div>

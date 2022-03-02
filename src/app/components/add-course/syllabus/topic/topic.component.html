@@ -1,0 +1,72 @@
+<div *ngIf="preview">
+    <!-- <div *ngFor="let data of preview">
+    {{ data | json }}
+  </div> -->
+    <mat-accordion>
+        <mat-expansion-panel hideToggle *ngFor="let data of preview">
+            <mat-expansion-panel-header>
+                <mat-panel-title> {{masterData.sectiontitle}} </mat-panel-title>
+                <mat-panel-description> </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div>
+                <div>Title: {{ data.title }}</div>
+                <br />
+                <div>Excerpt: {{ data.excerpt }}</div>
+                <br />
+                <div innerHTML="Content: {{ decode(data.content) }}"></div>
+                <br />
+                <div>Duration: {{ data.duration }}</div>
+                <br />
+                <div>isPreview: {{ data.ispreview }}</div>
+                <br />
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+<div *ngIf="!topicAdded">
+    <div *ngFor="let data of topics" class="form-group" appearance="outline">
+        <!-- <div appearance="outline"> -->
+        <div>
+            <mat-label>Enter Topic Title: </mat-label>
+            <input matInput type="text" placeholder="Enter Topic Title" name="topicname" [(ngModel)]="topicData.title" />
+            <!-- <button mat-button type="button" (click)="displayVideo()">V</button>
+    <button mat-button type="button" (click)="displayTopicMaterial()">M</button> -->
+            <br />
+        </div>
+        <!-- <app-video *ngIf="viewVideoInput"></app-video>
+  <app-topic-material *ngIf="viewTopicMaterialInput"></app-topic-material> -->
+        <div>
+            <div>
+                <mat-label>Enter Topic Excerpt: </mat-label>
+                <input matInput type="text" placeholder="Enter Topic Excerpt" name="excerpt" [(ngModel)]="topicData.excerpt" />
+            </div>
+            <div>
+                <mat-label>Enter Text Content</mat-label>
+                <editor name="content" class="form-control" placeholder="-Enter Text Content-" apiKey="cbpoojpbjujvv7syuwg1lltc6v6al7iiyi174optst6j4ddi" initialValue="<p>Initial content of the editor</p>" [init]="{
+            height: 500,
+            menubar: false,
+            plugins: [
+              'advlist autolink lists link image charmap print',
+              'preview anchor searchreplace visualblocks code',
+              'fullscreen insertdatetime media table paste',
+              'help wordcount'
+            ],
+            toolbar:
+              'undo redo | formatselect | bold italic | \
+      alignleft aligncenter alignright alignjustify | \
+      bullist numlist outdent indent | help'
+          }" [(ngModel)]="topicData.content">
+                </editor>
+            </div>
+            <br />
+            <mat-checkbox type="checkbox" name="isPreview" [(ngModel)]="topicData.ispreview">isPreview</mat-checkbox><br /><br />
+            <mat-label>Enter Duration</mat-label>
+            <input matInput type="number" placeholder="Duration" name="duration" [(ngModel)]="topicData.duration" />
+        </div>
+        <br />
+        <button mat-button type="button" (click)="saveTopic()">Save Topic</button>
+    </div>
+</div>
+<button *ngIf="addTopicButton" mat-button type="button" (click)="addTopicInput()">
+  Add Topic
+</button>

@@ -1,0 +1,89 @@
+<app-loading *ngIf="isLoading"></app-loading>
+
+<div *ngIf="!isLoading">
+  <h2>Login Form</h2>
+  <hr />
+  <form #login="ngForm" (ngSubmit)="onSubmit()">
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label" for="inputEmail">Email</label>
+      <input
+        #email="ngModel"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        type="email"
+        class="form-control"
+        id="inputEmail"
+        placeholder="Email"
+        required
+        name="email"
+        [(ngModel)]="user.email"
+        [class]="
+          formSubmitted && email.invalid ? 'error-input' : 'form-control'
+        "
+      />
+      <p class="error-message" *ngIf="email.invalid && formSubmitted">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        <span style="color: red">Enter Valid Email</span>
+      </p>
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter your email</mat-label>
+      <input
+        matInput
+        #email="ngModel"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        type="email"
+        class="form-control"
+        placeholder="Your email"
+        required
+        name="email"
+        [(ngModel)]="user.email"
+      />
+      <mat-error *ngIf="email.invalid && formSubmitted">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label" for="inputPassword">Password</label>
+      <input
+        #password="ngModel"
+        type="password"
+        class="form-control"
+        minlength="8"
+        placeholder="Password"
+        required
+        name="password"
+        [(ngModel)]="user.password"
+        required
+        appPasswordShowHide
+        [class]="
+          formSubmitted && password.invalid ? 'error-input' : 'form-control'
+        "
+      />
+      <p class="error-message" *ngIf="password.invalid && formSubmitted">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        <span style="color: red">Enter Valid Password</span>
+      </p>
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        #password="ngModel"
+        type="password"
+        class="form-control"
+        placeholder="Your password"
+        required
+        name="password"
+        [(ngModel)]="user.password"
+      />
+      <mat-error *ngIf="password.invalid && formSubmitted">
+        Please enter correct password
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <label>Not a member? <a routerLink="/register">SignUp</a></label>
+    </div>
+    <!-- <input type="submit" class="btn btn-primary" value="SignIn" /> -->
+    <button mat-button class="animated-button youace-four">SignIn</button>
+  </form>
+</div>

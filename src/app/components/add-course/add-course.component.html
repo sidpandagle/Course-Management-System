@@ -1,0 +1,58 @@
+<h2>Add Course</h2>
+<span *ngIf="masterDataService.fillMoreDetails"
+  >(Now you can add Syllabus, Announcement and FAQs)</span
+>
+<hr />
+<div>
+  <!-- <button type="button" class="btn btn-primary" routerLink="details">
+    Details</button
+  >&nbsp;
+  <button
+    [disabled]="!masterDataService.fillMoreDetails"
+    type="button"
+    class="btn btn-primary"
+    routerLink="syllabus"
+  >
+    Syllabus</button
+  >&nbsp;
+  <button
+    [disabled]="!masterDataService.fillMoreDetails"
+    type="button"
+    class="btn btn-primary"
+    routerLink="announcement"
+  >
+    Announcement</button
+  >&nbsp;
+  <button
+    [disabled]="!masterDataService.fillMoreDetails"
+    type="button"
+    class="btn btn-primary"
+    routerLink="faq"
+  >
+    FAQ</button
+  >&nbsp;
+  <hr /> -->
+  <nav mat-tab-nav-bar class="youace-tablinks">
+    <a mat-tab-link routerLink="details" class="active">Details</a>
+    <a
+      mat-tab-link
+      [disabled]="!masterDataService.fillMoreDetails"
+      routerLink="syllabus"
+      >Syllabus</a
+    >
+    <a
+      mat-tab-link
+      [disabled]="!masterDataService.fillMoreDetails"
+      routerLink="announcement"
+      >Announcement</a
+    >
+    <a
+      mat-tab-link
+      [disabled]="!masterDataService.fillMoreDetails"
+      routerLink="faq"
+      >FAQs</a
+    >
+  </nav>
+</div>
+<br />
+<router-outlet></router-outlet>

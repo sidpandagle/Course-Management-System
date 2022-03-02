@@ -1,0 +1,355 @@
+<app-loading *ngIf="isLoading"></app-loading>
+<div *ngIf="!isLoading">
+  <h2>Details</h2>
+  <hr />
+  <form #addcourse="ngForm" (ngSubmit)="onSubmit()">
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Category</label>
+      <select
+        #category="ngModel"
+        class="form-control"
+        [class]="
+          formSubmitted && category.invalid ? 'error-input' : 'form-control'
+        "
+        name="categoryid"
+        [(ngModel)]="course.categoryid"
+        required
+      >
+        <option value="">Select Category</option>
+        <option *ngFor="let data of categoryData" [value]="data.categoryid">
+          {{ data.category }}
+        </option>
+      </select>
+      <p class="error-message" *ngIf="category.invalid && formSubmitted">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+
+        <span style="color: red">Enter Valid CourseId</span>
+      </p>
+    </div> -->
+    <mat-form-field class="form-group" appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select
+        #category="ngModel"
+        class="form-control"
+        [(ngModel)]="course.categoryid"
+        name="categoryid"
+        placeholder="Category"
+        required
+      >
+        <mat-option *ngFor="let data of categoryData" [value]="data.categoryid">
+          {{ data.category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Title</label>
+      <input
+        #title="ngModel"
+        type="text"
+        class="form-control"
+        name="title"
+        placeholder="Title"
+        [(ngModel)]="course.title"
+        required
+        [class]="
+          formSubmitted && title.invalid ? 'error-input' : 'form-control'
+        "
+      />
+      <p class="error-message" *ngIf="title.invalid && formSubmitted">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+
+        <span style="color: red">Enter Valid CourseId</span>
+      </p>
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter title</mat-label>
+      <input
+        matInput
+        #title="ngModel"
+        type="text"
+        class="form-control"
+        placeholder="Title"
+        required
+        name="title"
+        [(ngModel)]="course.title"
+      />
+      <mat-error *ngIf="title.invalid && formSubmitted">
+        Please enter a valid title
+      </mat-error>
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Excerpt</label>
+      <input
+        type="text"
+        class="form-control"
+        name="excerpt"
+        placeholder="Excerpt"
+        [(ngModel)]="course.excerpt"
+      />
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter Excerpt</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Excerpt"
+        name="excerpt"
+        [(ngModel)]="course.excerpt"
+      />
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        name="price"
+        placeholder="Price"
+        [(ngModel)]="course.price"
+      />
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter Price</mat-label>
+      <input
+        matInput
+        type="number"
+        class="form-control"
+        placeholder="Price"
+        name="price"
+        [(ngModel)]="course.price"
+      />
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Sale Price</label>
+      <input
+        type="number"
+        class="form-control"
+        name="saleprice"
+        placeholder="Sale Price"
+        [(ngModel)]="course.saleprice"
+      />
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter Sale Price</mat-label>
+      <input
+        matInput
+        type="number"
+        class="form-control"
+        placeholder="Sale Price"
+        name="saleprice"
+        [(ngModel)]="course.saleprice"
+      />
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Duration</label>
+      <input
+        type="number"
+        class="form-control"
+        name="duration"
+        placeholder="Duration"
+        [(ngModel)]="course.duration"
+      />
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter Duration</mat-label>
+      <input
+        matInput
+        type="number"
+        class="form-control"
+        placeholder="Duration"
+        name="duration"
+        [(ngModel)]="course.duration"
+      />
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Lectures</label>
+      <input
+        type="number"
+        class="form-control"
+        name="lectures"
+        placeholder="Lectures"
+        [(ngModel)]="course.lectures"
+      />
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter Lectures</mat-label>
+      <input
+        matInput
+        type="number"
+        class="form-control"
+        placeholder="Lectures"
+        name="lectures"
+        [(ngModel)]="course.lectures"
+      />
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Videos</label>
+      <input
+        type="number"
+        class="form-control"
+        name="videos"
+        placeholder="Videos"
+        [(ngModel)]="course.videos"
+      />
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter Videos</mat-label>
+      <input
+        matInput
+        type="number"
+        class="form-control"
+        placeholder="Videos"
+        name="videos"
+        [(ngModel)]="course.videos"
+      />
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label>Course Level</label><br />
+      <select
+        #level="ngModel"
+        class="form-control"
+        name="levelid"
+        [(ngModel)]="course.levelid"
+        required
+        [class]="
+          formSubmitted && level.invalid ? 'error-input' : 'form-control'
+        "
+      >
+        <option value="">Select Course Level</option>
+        <option *ngFor="let data of levelData" [value]="data.courselevelid">
+          {{ data.courselevel }}
+        </option>
+      </select>
+      <p class="error-message" *ngIf="level.invalid && formSubmitted">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+
+        <span style="color: red">Enter Valid CourseId</span>
+      </p>
+    </div> -->
+    <mat-form-field class="form-group" appearance="fill">
+      <mat-label>Course Level</mat-label>
+      <mat-select
+        #level="ngModel"
+        class="form-control"
+        [(ngModel)]="course.levelid"
+        name="levelid"
+        placeholder="Course Level"
+        required
+      >
+        <mat-option *ngFor="let data of levelData" [value]="data.courselevelid">
+          {{ data.courselevel }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Description</label>
+      <input
+        #description="ngModel"
+        type="text"
+        class="form-control"
+        name="description"
+        placeholder="Description"
+        [class]="
+          formSubmitted && description.invalid ? 'error-input' : 'form-control'
+        "
+        [(ngModel)]="course.description"
+        required
+      />
+      <p class="error-message" *ngIf="description.invalid && formSubmitted">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+
+        <span style="color: red">Enter Valid CourseId</span>
+      </p>
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Enter Description</mat-label>
+      <input
+        matInput
+        #description="ngModel"
+        type="text"
+        class="form-control"
+        placeholder="Description"
+        required
+        name="description"
+        [(ngModel)]="course.description"
+      />
+      <mat-error *ngIf="description.invalid && formSubmitted">
+        Please enter a valid description
+      </mat-error>
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label class="form-label">Featured Image Url</label>
+      <input
+        type="text"
+        class="form-control"
+        name="featuredimageurl"
+        placeholder="Featured Image Url"
+        [(ngModel)]="course.featuredimageurl"
+      />
+    </div> -->
+    <mat-form-field class="form-group" appearance="outline">
+      <mat-label>Featured Image Url</mat-label>
+      <input
+        matInput
+        type="text"
+        class="form-control"
+        placeholder="Featured Image Url"
+        name="featuredimageurl"
+        [(ngModel)]="course.featuredimageurl"
+      />
+    </mat-form-field>
+    <!-- <div class="mb-3 form-group">
+      <label>Course Status</label><br />
+      <select
+        #coursestatus="ngModel"
+        name="coursestatusid"
+        class="form-control"
+        [class]="
+          formSubmitted && coursestatus.invalid ? 'error-input' : 'form-control'
+        "
+        [(ngModel)]="course.coursestatusid"
+        required
+      >
+        <option value="">Select Course Status</option>
+        <option
+          *ngFor="let data of coursestatusData"
+          [value]="data.coursestatusid"
+        >
+          {{ data.coursestatus }}
+      </select>
+      <p class="error-message" *ngIf="coursestatus.invalid && formSubmitted">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        <span style="color: red">Enter Valid CourseId</span>
+      </p>
+    </div> -->
+    <mat-form-field class="form-group" appearance="fill">
+      <mat-label>Course Status</mat-label>
+      <mat-select
+        #coursestatus="ngModel"
+        class="form-control"
+        [(ngModel)]="course.coursestatusid"
+        name="coursestatusid"
+        placeholder="Course Status"
+        required
+      >
+        <mat-option
+          *ngFor="let data of coursestatusData"
+          [value]="data.coursestatusid"
+        >
+          {{ data.coursestatus }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- <button type="submit" class="btn btn-primary">Save Course</button> -->
+    <button mat-button type="submit" class="animated-button youace-four">
+      Save Course
+    </button>
+    <!-- <button
+      [disabled]="addcourse.invalid"
+      type="submit"
+      class="btn btn-primary"
+    >
+      Add Course
+    </button> -->
+  </form>
+</div>

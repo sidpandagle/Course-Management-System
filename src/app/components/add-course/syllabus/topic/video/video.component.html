@@ -1,0 +1,24 @@
+<div>
+  <br />
+  <a mat-button (click)="fileInput.click()">
+    <span>Choose Files</span>
+  </a>
+  <input #fileInput hidden type="file" (change)="onSelectFile($event)" />
+  <br />
+  <video
+    [src]="videoUrl"
+    *ngIf="videoUrl"
+    height="200"
+    controls
+    autoplay
+  ></video
+  ><br />
+  <button
+    (click)="uploadVideo()"
+    *ngIf="videoSelected"
+    mat-button
+    type="button"
+  >
+    Save Video
+  </button>
+</div>

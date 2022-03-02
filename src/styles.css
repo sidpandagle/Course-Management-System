@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+body,
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.error-message {
+  background: #fce4e4;
+  padding: 5px;
+  font-size: 13px;
+}
+.error-message .fa-exclamation-circle:before {
+  color: red;
+  margin-right: 5px;
+}
+.error-message span {
+  font-size: 12px;
+}
+.error-input {
+  border: 1px solid red;
+}
